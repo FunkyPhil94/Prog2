@@ -1,0 +1,88 @@
+
+Aufgabe 1 (Theorie)
+
+Setzen Sie sich im Folgenden mit der Thematik Annotationen in Java auseinander. Su-
+chen Sie sich daf ̈ur Informationen im Skript und in der Literatur und beantworten Sie
+folgende Fragen:
+
+1. Was sind Annotationen in Java?
+2. Warum werden Annotationen verwendet?
+3. Was bewirkt die Annotation @Override?
+
+
+
+Aufgabe 2
+
+Modellieren Sie im Folgenden eine Art von Speicher sowie einen Kellerspeicher (Stack/-
+Stapel) und eine Warteschlange als konkrete Umsetzungen. Wir beschr ̈anken uns darauf,
+dass nur ganzzahlige Werte gespeichert werden sollen.
+Hierzu definieren wir zun ̈achst eine Schnittstelle Puffer, die generelle Operationen auf
+einem Speicher vorgeben soll. Die Schnittstelle soll die Methoden isEmpty, size und
+capacity bereitstellen. Alle drei Methoden haben eine leere Parameterliste. isEmpty
+soll einen Wahrheitswert zur ̈uckgeben, der besagt, ob der Speicher leer ist. size und
+capacity sollen jeweils ganzzahlige Werte zur ̈uckgeben. Die Methode size soll in ihrer
+konkreten Umsetzung dazu dienen die aktelle Gr ̈oße des Speichers zu liefern (= Anzahl
+belegter Speicherpl ̈atze). capacity soll dazu dienen die maximale Größe des Speichers
+zu liefern. Weiterhin soll eine Methode insert vorgegeben werden, deren Funktion es
+sein soll, ein Element anzunehmen und in den Speicher einzuf ̈ugen. Sollte der Spei-
+cher beim Aurfuf von insert voll sein, soll eine java.lang.IllegalStateException
+geworfen werden. Zuletzt soll eine Methode remove deklariert werden, die dazu die-
+nen soll. ein Element aus dem Speicher zu entnehmen. Sollte der Speicher beim Auf-
+ruf von remove leer sein, soll eine java.util.NoSuchElementException geworfen wer-
+den.
+
+Die Schnittstelle Stapel soll die Schnittstelle Puffer erweitern. Zus ̈atzlich soll diese
+Schnittstelle noch die Methode top deklarieren, die das aktuell oberste Element auf dem
+Stapel liefert, ohne es zu entfernen. Sollte der Stapel beim Aurfuf von top leer sein, soll
+eine java.Util.NoSuchElementException geworfen werden.
+
+Die Schnittstelle Schlange soll die Schnittstelle Puffer erweitern. Zus ̈atzlich soll diese
+Schnittstelle noch die Methode front deklarieren, die das aktuell vorderste Element in
+der Schlange liefert, ohne es zu entfernen. Sollte die Schlange beim Aurfuf von front leer
+sein, soll eine java.Util.NoSuchElementException geworfen werden.
+Die konkreten Klassen StapelMitArray und SchlangeMitArray sollen die Schnittstel-
+len Stapel bzw. Schlange implementieren. Intern sollen jeweils ganzzahlige Werte in
+einem Array gespeichert werden. Stellen Sie jeweils einen Konstruktor zur Verf ̈ugung,
+der einen ganzzahligen Wert maxGroesse annimmt und ein Array mit dieser Gr ̈oße an-
+legt.
+
+Hinweis:  ̈Uberlegen Sie was Sie im Array intern machen m ̈ussen, damit bei der Schlange
+das aktuelle Element am Anfang des Arrays steht.
+Gehen Sie wie folgt vor:
+
+• Skizzieren Sie diese kleine Klassenhierarchie in einem UML-Diagramm.  ̈Uberlegen
+Sie sich die Parameter und R ̈uckgabewerte die Methoden haben m ̈ussen und welche
+Datentypen diese haben.  ̈Uberlegen Sie auch welche Zugriffsrechte sinnvoll sind.
+
+• Machen Sie sich die Funktionalit ̈at eines Stack und einer Schlange klar. Skizzieren
+die Funktionsweise der Methoden der Klasse.
+
+• Schreiben Sie den Quellcode der Schnittstellen und Klassen
+Hinweis: Dieses kleine Softwaredesign dient uns als Grundlage für spätere  ̈Ubungen.
+Es soll eine m ̈oglichst einfache Hierarchie sein, die m ̈oglichst modular ist. Grunds ̈atzlich
+k ̈onnte man das (und sp ̈atere Funktionalit ̈aten) auch anders modellieren.
+
+
+
+Aufgabe 3
+
+Schreiben Sie eine abstrakte Klasse Person. Diese Klasse hat als private Eigenschaften
+einen Namen und Vornamen. In einem Konstruktor sollen zuerst der Name, dann der
+Vorname  ̈ubergeben werden.  ̈uber die Methoden getName und getVorname sollen diese
+Eigenschaften nach aussen kommuniziert werden k ̈onnen. In der Methode toString soll
+folgende Ausgabe gemacht werden: <Name>, <Vorname>. Also zuerst der Name gefolgt von
+einem Komma und einem Leerzeichen und dann dem Vornamen.
+Schreiben Sie eine Klasse Student, die die Klasse Person erweitert. Als zus ̈atzliche pri-
+vate Eigenschaft gibt es eine ganzzahlige Matrikelnummer. Es soll einen Konstruktor f ̈ur
+Name, Vorname, Matrikelnummer geben. Ausserdem soll es eine Methode getMatrikel
+geben. Die toString Methode soll nach Name und Vorname (siehe oben) noch ein Leer-
+zeichen und die Matrikelnummer ausgeben.
+Schreiben Sie eine Klasse Boxer, die auch die Klasse Person erweitert.  ̈ahnlich zur Matri-
+kelnummer in Student soll sie eine ganzzahlige Eigenschaft Gewicht (in kg) haben. Stel-
+len Sie entsprechend einen Konstruktor und Getter zur Verf ugung.
+
+Implementieren Sie auch jeweils die equals-Methode f ur diese Klassen. Eine Person soll
+nach Name und Vorname verglichen werden. Studenten sollen zus ̈atzlich nach Matrikel-
+nummer verglichen werden, Boxer zus ̈atzlich nach Gewicht. Uberlegen Sie wie Sie ge-
+schickt in den Unterklassen den Vergleich der Oberklasse machen k onnen.
+3
