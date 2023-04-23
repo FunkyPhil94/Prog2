@@ -26,6 +26,7 @@ class EVL <T>{
 		size++;
 	}
 	
+	
 	public T removeFirst(){
 		if(null != first) { 
 			T r = first.data; 
@@ -35,9 +36,23 @@ class EVL <T>{
 			} 
 		return null;
 	}
-
 	
-	////////////////////////////////
+	public T getX (int z) {
+		ListenEl current = first;
+		for (int i = 1; i < z; i++) {
+			current = current.next;
+		}
+		
+		return current.data;
+	}
+	public T getNext (int z) {
+		ListenEl current = first;
+		for (int i = 1; i < z; i++) {
+			current = current.next;
+		}
+		
+		return current.next.data;
+	}
 	
 	public T getFirst()throws NoSuchElementException{ 
 		if(first == null) { 
@@ -102,34 +117,51 @@ class EVL <T>{
 	    return false;
 	}
 	
-	
 	public int size(){ 
-		int s = size;
-//		if(first == null) {  
-//			return s; 
-//		}
-//		while (first != null) {
-//			s++;
-//			first = first.next;
-//		}
-		return s;
-		
+		return size;	
 	}
 	
 	public String toString(){ 
-		if(first == null) { 
+		ListenEl current = first;
+		if(current == null) { 
 			return "";
 		}
-		return "(" + toStringHilfe(first).substring(1) +  ")";
-	}
-	
-	
-	private String toStringHilfe(ListenEl first) {
-		if (first == null) {
-			return "";
+		String s = "" + current.data;
+		while (current.next != null) {
+			s += "-" + current.next.data.toString();
+			current = current.next;
 		}
-		return "-" + first.data.toString() + toStringHilfe(first.next);
+		return s;
+	}	
+	
+	public void zip(EVL<T> other) {
+	    if (other.size() == 0) {
+	        return;
+	    }
+
+	    ListenEl currentThis = first;
+	    ListenEl currentOther = other.first;
+	    ListenEl currentOther2 = null;
+
+	    while (currentThis != null && currentOther != null) {
+	        ListenEl nextThis = currentThis.next;
+	        ListenEl nextOther = currentOther.next;
+
+	        currentThis.next = currentOther;
+	        currentOther.next = nextThis;
+
+	        currentOther2 = currentOther;
+	        currentThis = nextThis;
+	        currentOther = nextOther;
+	    }
+
+	    if (currentThis == null && currentOther2 != null) {
+	    	currentOther2.next = currentOther;
+	    }
+
+	    size += other.size();
+	    other.first = null;
+	    other.size = 0;
 	}
-	
-	
+
 }
