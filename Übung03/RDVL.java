@@ -1,3 +1,6 @@
+import java.util.NoSuchElementException;
+
+
 
 public class RDVL <T>{
 	
@@ -21,60 +24,63 @@ public class RDVL <T>{
 	}
 	
 	public int size() {
-		int s = 0;
-		if (entry == null) {
-			return s;
-		}
-		if (entry != null) {
-			ListenEl current = entry;
-			do {
-				size++;
-				current = current.next;
-			}while (current != entry);
-		}
-		return s;
+		return size;
 	}
 	
-	public void add (T e) {
-	    ListenEl newElement = new ListenEl(e);
-		if(isEmpty()) {
-			entry = newElement;
-			entry.next = entry;
-			entry.prev = entry;
-		} else {
-			entry.prev.next = newElement;
-			newElement.next = entry;
-			newElement.prev = entry.prev;
-	        entry.prev.next = newElement;
+	public void add(T e) {
+		    ListenEl newElement = new ListenEl(e);
+		    if (isEmpty()) {
+		        entry = newElement;
+		        entry.next = entry;
+		        entry.prev = entry;
+		    } else {
+		        ListenEl last = entry.prev;
+		        newElement.next = entry;
+		        newElement.prev = last;
+		        entry.prev = newElement;
+		        last.next = newElement;
+		    }
+		    size++;
 		}
-	}
+
+
+
+
 	
 	public T remove () {
 		if (isEmpty()) {
-			return null;
+			throw new NoSuchElementException("RDVL ist leer");
 		} else {
 			T r = entry.data;
 			entry.prev.next = entry.next;
 			entry.next.prev = entry.prev;
 			entry = entry.next;
+			size--;
 			return r;
 		}
 	}
 	
 	public T element () {
 		if (isEmpty()) {
-			return null;
+			throw new NoSuchElementException("RDVL ist leer");
 		}
 		return entry.data;
 	}
 	
 	public void next (int s) {
-		for (int i = 0; i < s; i++) {
-			entry = entry.next;
-		}
+	    if (isEmpty()) {
+	        throw new NoSuchElementException("RDVL ist leer");
+	    }
+	    for (int i = 0; i < s; i++) {
+	        entry = entry.next;
+	    }
 	}
+
 	
 	public void prev (int s) {
+		if (isEmpty()) {
+			throw new NoSuchElementException("RDVL ist leer");
+		}
 		for (int i = 0; i < s; i++) {
 			entry = entry.prev;
 		}
