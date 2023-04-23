@@ -28,7 +28,7 @@ public class EVLMAIN {
 		System.out.println(list2.toString());
 
 
-		list.zip2(list2);
+		list.zip(list2);
 		
 //		System.out.println(list.getX(2));
 //		System.out.println(list.getNext(2));
